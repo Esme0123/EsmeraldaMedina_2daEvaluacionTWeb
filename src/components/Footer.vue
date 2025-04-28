@@ -1,7 +1,7 @@
 <template>
   <footer class="site-footer">
     <p>&copy; {{ currentYear }} Portal SWAPI con Vue.js. Creado para la Evaluación.</p>
-    <p>Datos proporcionados por <a href="https://swapi.dev/" target="_blank" rel="noopener noreferrer">SWAPI</a>.</p>
+    <p>Datos proporcionados por <a href="https://www.swapi.tech/" target="_blank" rel="noopener noreferrer">SWAPI</a>.</p>
   </footer>
 </template>
 
