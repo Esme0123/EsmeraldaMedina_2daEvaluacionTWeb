@@ -1,6 +1,6 @@
 # Portal SWAPI con Vue.js - Segunda Evaluación TWeb
 
-Este proyecto es una plantilla de portal web desarrollada con Vue.js 3 que consume datos de la [API pública SWAPI (Star Wars API)](https://swapi.dev/) para mostrar información sobre personajes, planetas y naves espaciales del universo Star Wars.
+Este proyecto es una plantilla de portal web desarrollada con Vue.js 3 que consume datos de la [API pública SWAPI (Star Wars API)](https://www.swapi.tech/) para mostrar información sobre personajes, planetas y naves espaciales del universo Star Wars.
 
 ## Características
 
@@ -43,9 +43,9 @@ Este proyecto es una plantilla de portal web desarrollada con Vue.js 3 que consu
 
 Se utilizan los siguientes endpoints de la SWAPI:
 
-* `https://swapi.dev/api/people/` - Para obtener datos de personajes.
-* `https://swapi.dev/api/planets/` - Para obtener datos de planetas.
-* `https://swapi.dev/api/starships/` - Para obtener datos de naves espaciales.
+* `https://www.swapi.tech/api/people/` - Para obtener datos de personajes.
+* `https://www.swapi.tech/api/planets/` - Para obtener datos de planetas.
+* `https://www.swapi.tech/api/starships/` - Para obtener datos de naves espaciales.
 
 ## Instalación y Uso
 
@@ -57,7 +57,7 @@ Se utilizan los siguientes endpoints de la SWAPI:
 
 1.  **Clonar el repositorio:**
     ```bash
-    git clone https://github.com/Esme0123/EsmeraldaMedina_2daEvaluacionTWeb.git Examen
+    git clone https://github.com/Esme0123/EsmeraldaMedina_2daEvaluacionTWeb.git 
     cd proyectoVue
     ```
 
@@ -95,4 +95,24 @@ Se utilizan los siguientes endpoints de la SWAPI:
     * `src/assets/view-styles.css`: Define estilos comunes para las vistas, como la estructura de la cuadrícula (`card-grid`) y los controles de paginación (`pagination-controls`).
     * `<style scoped>` en cada componente: Contiene estilos específicos para ese componente, asegurando que no afecten a otros. Se usa Flexbox y Grid para layouts responsivos.
 
+## Capturas de pantalla del portal Web
+Se usaron los colores respecto a los colores que usa Swapi
+* **Inicio**
+  ![image](https://github.com/user-attachments/assets/63f324d8-0f0d-4e72-a890-a6df3dcc719c)
+  
+  Versión Desktop
+  
+  ![image](https://github.com/user-attachments/assets/d9360abb-52c7-4bf8-bcce-37e694f8cdc7)
+  
+  Versión Tablet
+  
+  ![image](https://github.com/user-attachments/assets/a282d7b3-383e-4002-998d-91561b87a069)
+  
+  Versión Celular
+
+  Está es la página principal del portal donde podemos ver un menú en la parte de arriba del nombre SWAPI Portal en el cual si se hace click te lleva al inicio, es decir, en la página que nos encontramos actualmente. También podemos ver las tres opciones Personajes  Planetas   Naves Espaciales, de las cuales si hacemos click veremos cada sección. Por otro lado, en el medio tenemos un mensaje de bienvenida hacia el portal y un breve mensaje que explica las opciones que se pueden explorar sobre Star Wars. Cada botón con su respectivo color. Por último, podemos ver el Footer donde nos describe que hicimos el portal con Vue.js y los datos proporcionados por Swapi, que si hacemos click en Swapi nos lleva a la página web del mismo. Como vemos según cada tipo de pantalla estos componentes se van adaptando para un buen entendimiento de cada sección del Inicio.
+
+  Cabe resaltar que cada botón o componente del navbar, tiene un diferente color si se pasa el ratón encima, es decir, se aplicó estilos para lograr este resultado y que quede más estético.
+
+* **Personajes**
 
