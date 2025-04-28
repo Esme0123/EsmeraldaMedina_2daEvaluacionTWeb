@@ -1,0 +1,76 @@
+/* src/assets/view-styles.css */
+
+/* Contenedor principal de cada vista */
+.view-container {
+    padding: 1rem 0; /* Espacio vertical dentro de la vista */
+  }
+  
+  /* Título principal de la vista */
+  .view-title {
+    font-size: 2rem; /* Tamaño consistente para títulos de vista */
+    font-weight: bold;
+    margin-bottom: 2rem; /* Espacio debajo del título */
+    text-align: center;
+    /* El color se define en cada vista específica */
+  }
+  
+  /* Cuadrícula para las tarjetas */
+  .card-grid {
+    display: grid;
+    gap: 1.5rem; /* Espacio entre tarjetas */
+    /* Columnas responsivas */
+    grid-template-columns: repeat(1, 1fr); /* 1 columna por defecto (móvil) */
+  }
+  
+  /* Mensaje cuando no hay datos */
+  .no-data-message {
+    text-align: center;
+    color: #9ca3af; /* Gris */
+    margin-top: 2rem;
+    font-size: 1.1rem;
+  }
+  
+  /* Controles de paginación */
+  .pagination-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem; /* Espacio entre botones */
+    margin-top: 2.5rem; /* Espacio arriba de la paginación */
+  }
+  
+  /* Estilos base para botones de paginación (heredan de button en main.css) */
+  .pagination-button {
+    min-width: 100px; /* Ancho mínimo */
+  }
+  
+  /* Botón 'Anterior' */
+  .pagination-button.prev-button {
+    background-color: var(--color-border); /* Gris oscuro */
+    color: var(--color-text);
+  }
+  .pagination-button.prev-button:hover:not(:disabled) {
+    background-color: #4b5563; /* Gris más oscuro */
+  }
+  
+  /* El botón 'Siguiente' obtiene su color de la vista específica */
+  
+  
+  /* Media Queries para la cuadrícula */
+  @media (min-width: 640px) { /* sm */
+    .card-grid {
+      grid-template-columns: repeat(2, 1fr); /* 2 columnas en pantallas pequeñas */
+    }
+  }
+  
+  @media (min-width: 768px) { /* md */
+    .card-grid {
+      grid-template-columns: repeat(3, 1fr); /* 3 columnas en medianas */
+    }
+  }
+  
+  @media (min-width: 1024px) { /* lg */
+    .card-grid {
+      grid-template-columns: repeat(4, 1fr); /* 4 columnas en grandes */
+    }
+  }
+  
