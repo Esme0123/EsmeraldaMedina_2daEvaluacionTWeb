@@ -15,7 +15,7 @@ Este proyecto es una plantilla de portal web desarrollada con Vue.js 3 que consu
 
 ## Estructura del Proyecto
 
-/├── public/             # Archivos estáticos públicos
+├── public/             # Archivos estáticos públicos
 
 ├── src/
  
