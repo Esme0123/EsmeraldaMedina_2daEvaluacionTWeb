@@ -2,75 +2,88 @@
 
 /* Contenedor principal de cada vista */
 .view-container {
-    padding: 1rem 0; /* Espacio vertical dentro de la vista */
-  }
-  
-  /* Título principal de la vista */
-  .view-title {
-    font-size: 2rem; /* Tamaño consistente para títulos de vista */
-    font-weight: bold;
-    margin-bottom: 2rem; /* Espacio debajo del título */
+  padding: 1rem 0;
+}
+
+/* Título principal de la vista */
+.view-title {
+  font-size: 2rem;
+  font-weight: 600; /* Ligeramente menos pesado */
+  margin-bottom: 1rem; /* Menos espacio */
+  text-align: center;
+  display: flex; /* Para alinear icono */
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem; /* Espacio entre icono y texto */
+}
+
+/* Contador de items y páginas */
+.item-count {
     text-align: center;
-    /* El color se define en cada vista específica */
-  }
-  
-  /* Cuadrícula para las tarjetas */
-  .card-grid {
-    display: grid;
-    gap: 1.5rem; /* Espacio entre tarjetas */
-    /* Columnas responsivas */
-    grid-template-columns: repeat(1, 1fr); /* 1 columna por defecto (móvil) */
-  }
-  
-  /* Mensaje cuando no hay datos */
-  .no-data-message {
-    text-align: center;
-    color: #9ca3af; /* Gris */
-    margin-top: 2rem;
-    font-size: 1.1rem;
-  }
-  
-  /* Controles de paginación */
-  .pagination-controls {
-    display: flex;
-    justify-content: center;
-    gap: 1rem; /* Espacio entre botones */
-    margin-top: 2.5rem; /* Espacio arriba de la paginación */
-  }
-  
-  /* Estilos base para botones de paginación (heredan de button en main.css) */
-  .pagination-button {
-    min-width: 100px; /* Ancho mínimo */
-  }
-  
-  /* Botón 'Anterior' */
-  .pagination-button.prev-button {
-    background-color: var(--color-border); /* Gris oscuro */
-    color: var(--color-text);
-  }
-  .pagination-button.prev-button:hover:not(:disabled) {
-    background-color: #4b5563; /* Gris más oscuro */
-  }
-  
-  /* El botón 'Siguiente' obtiene su color de la vista específica */
-  
-  
-  /* Media Queries para la cuadrícula */
-  @media (min-width: 640px) { /* sm */
-    .card-grid {
-      grid-template-columns: repeat(2, 1fr); /* 2 columnas en pantallas pequeñas */
-    }
-  }
-  
-  @media (min-width: 768px) { /* md */
-    .card-grid {
-      grid-template-columns: repeat(3, 1fr); /* 3 columnas en medianas */
-    }
-  }
-  
-  @media (min-width: 1024px) { /* lg */
-    .card-grid {
-      grid-template-columns: repeat(4, 1fr); /* 4 columnas en grandes */
-    }
-  }
-  
+    margin-bottom: 2rem; /* Más espacio antes de las tarjetas */
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+}
+
+/* Cuadrícula para las tarjetas */
+.card-grid {
+  display: grid;
+  gap: 1.75rem; /* Un poco más de espacio */
+  /* Columnas responsivas automáticas */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+/* Mensaje cuando no hay datos */
+.no-data-message {
+  text-align: center;
+  color: var(--color-text-muted);
+  margin-top: 3rem;
+  font-size: 1.1rem;
+  padding: 2rem;
+  /* Usar variable RGB para fondo semitransparente */
+  background-color: rgba(var(--color-card-bg-rgb, 22, 27, 34), 0.7); /* Fallback si no está definida */
+  border-radius: 8px;
+  border: 1px dashed var(--color-border); /* Borde punteado */
+}
+
+/* Controles de paginación */
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Centra verticalmente */
+  gap: 1rem;
+  margin-top: 3rem; /* Más espacio */
+  flex-wrap: wrap; /* Para pantallas pequeñas */
+}
+
+/* Indicador de página actual */
+.page-indicator {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0 0.5rem; /* Espacio alrededor */
+    white-space: nowrap;
+}
+
+
+/* Estilos base para botones de paginación (heredan de button en main.css) */
+.pagination-button {
+  min-width: 110px; /* Ancho mínimo */
+  font-weight: 500;
+}
+
+/* Botón 'Anterior' (usa estilos base de main.css) */
+/* .pagination-button.prev-button { } */
+
+/* El botón 'Siguiente' obtiene su color de la vista específica */
+/* Ejemplo: .pagination-button.next-button.people-theme { ... } */
+
+
+/* Definir variable RGB para card-bg si no está en :root global */
+/* Es mejor tenerlas en main.css :root */
+/*
+:root {
+  --color-card-bg-rgb: 22, 27, 34;
+}
+*/
+

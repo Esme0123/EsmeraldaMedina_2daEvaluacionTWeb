@@ -1,25 +1,30 @@
 <template>
   <div class="view-container">
-    <h2 class="view-title">Naves Espaciales de Star Wars</h2>
+    <h2 class="view-title">
+      <i class="fas fa-space-shuttle title-icon"></i> Naves Espaciales de Star Wars
+    </h2>
+    <p class="item-count" v-if="!loading && totalCount > 0">
+      Mostrando página {{ currentPage }} de {{ totalPages }}. Total: {{ totalCount }} naves.
+    </p>
 
-    <LoadingSpinner v-if="loading" />
+    <LoadingIndicator v-if="loading" />
     <ErrorMessage v-if="error" :message="error" />
 
-    <div v-if="!loading && !error && dataItems.length" class="card-grid">
+    <div v-if="!loading && !error && items.length" class="card-grid">
       <DataCard
-        v-for="item in dataItems"
-        :key="item.url"
-        :title="item.name"
+        v-for="ship in items"
+        :key="ship.url"
+        :title="ship.name"
         :details="{
-          modelo: item.model,
-          fabricante: item.manufacturer,
-          clase: item.starship_class,
-          costo: formatCredits(item.cost_in_credits)
+          modelo: { value: ship.model, icon: 'fas fa-cog' },
+          fabricante: { value: ship.manufacturer, icon: 'fas fa-industry' },
+          clase: { value: ship.starship_class, icon: 'fas fa-user-astronaut' },
+          costo: { value: formatCredits(ship.cost_in_credits), icon: 'fas fa-coins' }
         }"
-      />
+        :item-type="'starships'" />
     </div>
 
-     <div v-if="!loading && !error && !dataItems.length" class="no-data-message">
+     <div v-if="!loading && !error && !items.length" class="no-data-message">
        No se encontraron naves espaciales.
      </div>
 
@@ -29,64 +34,46 @@
           :disabled="!previousPage || loading"
           class="pagination-button prev-button"
         >
-          Anterior
+           <i class="fas fa-arrow-left"></i> Anterior
         </button>
+         <span class="page-indicator">Página {{ currentPage }}</span>
         <button
           @click="fetchData(nextPage)"
           :disabled="!nextPage || loading"
-          class="pagination-button next-button starships-theme"
-        >
-          Siguiente
+          class="pagination-button next-button starships-theme" >
+          Siguiente <i class="fas fa-arrow-right"></i>
         </button>
      </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
+import { useSwapiData } from '../composables/useSwapiData';
 import DataCard from '../components/DataCard.vue';
-import LoadingSpinner from '../components/LoadingSpinner.vue';
+import LoadingIndicator from '../components/LoadingIndicator.vue';
 import ErrorMessage from '../components/ErrorMessage.vue';
 
-const dataItems = ref([]);
-const loading = ref(false);
-const error = ref(null);
-const nextPage = ref(null);
-const previousPage = ref(null);
+// Usa el composable para 'starships'
+const { items, loading, error, nextPage, previousPage, totalCount, fetchData, getCurrentPageNumber } = useSwapiData('starships');
 
-const API_URL = 'https://www.swapi.tech/api/starships/';
+// Carga inicial
+onMounted(() => {
+  fetchData();
+});
 
+// Cálculos paginación
+const currentPage = computed(() => getCurrentPageNumber());
+const totalPages = computed(() => Math.ceil(totalCount.value / 10));
+
+// Formatea los créditos
 const formatCredits = (credits) => {
   if (credits === 'unknown') return 'Desconocido';
   const num = parseInt(credits, 10);
    if (isNaN(num)) return 'Desconocido';
+  // Añade ' créditos' al final
   return num.toLocaleString('es-ES') + ' créditos';
 };
-
-const fetchData = async (url = API_URL) => {
-  loading.value = true;
-  error.value = null;
-  dataItems.value = [];
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`Error ${response.status}: No se pudo obtener los datos`);
-    }
-    const data = await response.json();
-    dataItems.value = data.results;
-    nextPage.value = data.next;
-    previousPage.value = data.previous;
-  } catch (err) {
-    console.error("Error fetching data:", err);
-    error.value = err.message || 'Ocurrió un error al cargar los datos.';
-  } finally {
-    loading.value = false;
-  }
-};
-
-onMounted(() => {
-  fetchData();
-});
 </script>
 
 <style scoped>
@@ -95,13 +82,21 @@ onMounted(() => {
 .view-title {
   color: var(--color-tertiary); /* Verde para naves */
 }
+/* Icono y contador ya tienen estilos */
+/* .title-icon { ... } */
+/* .item-count { ... } */
 
 /* Tema para el botón 'Siguiente' de naves */
 .pagination-button.next-button.starships-theme {
    background-color: var(--color-tertiary);
    color: white;
+   border-color: var(--color-tertiary);
 }
 .pagination-button.next-button.starships-theme:hover:not(:disabled) {
-   background-color: #059669;
+   background-color: #059669; /* Verde más oscuro */
+   border-color: #059669;
 }
+/* Iconos y page indicator ya tienen estilos */
+/* .pagination-button i { ... } */
+/* .page-indicator { ... } */
 </style>

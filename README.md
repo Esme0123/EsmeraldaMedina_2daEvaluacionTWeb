@@ -15,18 +15,29 @@ Este proyecto es una plantilla de portal web desarrollada con Vue.js 3 que consu
 
 ## Estructura del Proyecto
 
-/├── public/             # Archivos estáticos públicos
+├── public/             # Archivos estáticos públicos
+
 ├── src/
-│   ├── assets/         # Archivos CSS (main.css, view-styles.css), imágenes, etc.
-│   ├── components/     # Componentes Vue reutilizables
-│   ├── router/         # Configuración de Vue Router
-│   ├── views/          # Componentes Vue que representan páginas/vistas
-│   ├── App.vue         # Componente raíz de la aplicación
-│   └── main.js         # Punto de entrada de la aplicación
-├── .gitignore          # Archivos ignorados por Git
-├── index.html          # Plantilla HTML principal
-├── package.json        # Dependencias y scripts del proyecto
-└── README.md           # Este archivo
+ 
+  │   ├── assets/         # Archivos CSS (main.css, view-styles.css), imágenes, etc.
+ 
+  │   ├── components/     # Componentes Vue reutilizables
+ 
+  │   ├── router/         # Configuración de Vue Router
+ 
+  │   ├── views/          # Componentes Vue que representan páginas/vistas
+ 
+  │   ├── App.vue         # Componente raíz de la aplicación
+ 
+  │   └── main.js         # Punto de entrada de la aplicación
+ 
+  ├── .gitignore          # Archivos ignorados por Git
+ 
+  ├── index.html          # Plantilla HTML principal
+ 
+  ├── package.json        # Dependencias y scripts del proyecto
+ 
+  └── README.md           # Este archivo
 
 ## API Consumida
 

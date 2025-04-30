@@ -1,40 +1,39 @@
 /* src/assets/main.css */
-
-/* Importar fuentes (opcional, puedes usar fuentes del sistema) */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+/* Importa Font Awesome (necesario para los iconos) */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
 
-/* Variables CSS para colores y fuentes */
+
+/* Variables CSS */
 :root {
-  --color-background: #111827; /* Gris oscuro casi negro */
-  --color-text: #e5e7eb; /* Gris claro */
+  --color-background: #0d1117; /* Negro GitHub oscuro */
+  --color-text: #c9d1d9; /* Texto gris claro GitHub */
+  --color-text-muted: #8b949e; /* Texto más apagado */
   --color-primary: #facc15; /* Amarillo SWAPI */
-  --color-secondary: #3b82f6; /* Azul */
-  --color-tertiary: #10b981; /* Verde */
-  --color-accent: #ef4444; /* Rojo para errores */
-  --color-card-bg: #1f2937; /* Gris un poco más claro para tarjetas */
-  --color-border: #374151; /* Borde sutil */
-  --color-link-hover: #ffffff;
-  --color-button-disabled-bg: #4b5563;
-  --color-button-disabled-text: #9ca3af;
+  --color-primary-rgb: 250, 204, 21; /* Amarillo SWAPI RGB */
+  --color-secondary: #58a6ff; /* Azul GitHub */
+  --color-tertiary: #3fb950; /* Verde GitHub */
+  --color-accent: #f85149; /* Rojo GitHub */
+  --color-card-bg: #161b22; /* Fondo de tarjeta GitHub */
+  --color-border: #30363d; /* Borde GitHub */
+  --color-border-rgb: 48, 54, 61; /* Borde GitHub RGB */
+  --color-link-hover: #79c0ff; /* Azul más claro hover */
+  --color-button-disabled-bg: #21262d;
+  --color-button-disabled-text: #6e7681;
 
-  --font-family-sans: 'Inter', sans-serif;
+  --font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
 
   --container-max-width: 1280px;
-  --container-padding: 1rem; /* Padding base */
+  --container-padding: 1rem;
 }
 
 /* Reseteo básico y estilos globales */
-*,
-*::before,
-*::after {
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
-
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   min-height: 100vh;
@@ -43,97 +42,130 @@ body {
   font-family: var(--font-family-sans);
   line-height: 1.6;
   font-size: 16px;
-  display: flex; /* Para que el footer se pegue abajo */
-  flex-direction: column; /* Para que el footer se pegue abajo */
+  display: flex;
+  flex-direction: column;
+  position: relative; /* Para el fondo estrellado */
+  overflow-x: hidden; /* Evita scroll horizontal por estrellas */
 }
+
+/* Fondo Estrellado Animado */
+body::before, body::after {
+  content: '';
+  position: fixed; /* Fijo para que no se mueva con el scroll */
+  top: 0;
+  left: 0;
+  width: 200%; /* Más ancho para animación */
+  height: 100%;
+  background-repeat: repeat;
+  z-index: -1; /* Detrás de todo */
+  will-change: transform; /* Optimización para animación */
+  pointer-events: none; /* Evita que interfiera con clics */
+}
+
+/* Capa 1 de estrellas (más pequeñas, más lentas) */
+body::before {
+  background-image: radial-gradient(1px 1px at 20px 30px, #eee, rgba(0,0,0,0)),
+                    radial-gradient(1px 1px at 40px 70px, #fff, rgba(0,0,0,0)),
+                    radial-gradient(1px 1px at 50px 160px, #ddd, rgba(0,0,0,0)),
+                    radial-gradient(1px 1px at 90px 40px, #fff, rgba(0,0,0,0)),
+                    radial-gradient(2px 2px at 130px 80px, #fff, rgba(0,0,0,0)),
+                    radial-gradient(1px 1px at 160px 120px, #ddd, rgba(0,0,0,0));
+  background-size: 200px 200px; /* Tamaño del patrón */
+  animation: moveStarsSlow 150s linear infinite;
+}
+
+/* Capa 2 de estrellas (un poco más grandes, más rápidas) */
+body::after {
+   background-image: radial-gradient(2px 2px at 50px 50px, #fff, rgba(0,0,0,0)),
+                     radial-gradient(2px 2px at 100px 150px, #ddd, rgba(0,0,0,0)),
+                     radial-gradient(3px 3px at 150px 90px, #fff, rgba(0,0,0,0));
+   background-size: 150px 150px; /* Tamaño del patrón diferente */
+   animation: moveStarsFast 100s linear infinite;
+   opacity: 0.8; /* Ligeramente más tenues */
+}
+
+@keyframes moveStarsSlow {
+  from { transform: translateX(0); }
+  to { transform: translateX(-200px); } /* Mueve un patrón completo */
+}
+@keyframes moveStarsFast {
+  from { transform: translateX(0); }
+  to { transform: translateX(-150px); } /* Mueve un patrón completo */
+}
+
 
 #app {
   display: flex;
   flex-direction: column;
-  flex-grow: 1; /* Ocupa el espacio restante */
+  flex-grow: 1;
   width: 100%;
+  position: relative; /* Asegura que el contenido esté sobre el fondo */
+  z-index: 1;
 }
 
 main {
-  flex-grow: 1; /* Asegura que el main ocupe el espacio disponible */
+  flex-grow: 1;
   width: 100%;
   max-width: var(--container-max-width);
   margin-left: auto;
   margin-right: auto;
-  padding: 2rem var(--container-padding); /* Padding vertical y horizontal */
+  padding: 2rem var(--container-padding);
 }
 
 a {
-  color: var(--color-primary);
+  color: var(--color-secondary); /* Azul GitHub para enlaces */
   text-decoration: none;
   transition: color 0.3s ease;
 }
-
 a:hover {
   color: var(--color-link-hover);
   text-decoration: underline;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  margin-bottom: 0.75rem;
-  font-weight: 600;
-}
-
+h1, h2, h3, h4, h5, h6 { margin-bottom: 0.75rem; font-weight: 600; }
 h1 { font-size: 2.5rem; }
-h2 { font-size: 2rem; color: var(--color-primary); text-align: center; } /* Títulos de sección */
+h2 { font-size: 2rem; text-align: center; } /* Color definido en vistas */
 h3 { font-size: 1.5rem; }
 
-/* Estilos para botones genéricos (pueden ser sobrescritos) */
+/* Estilos base para botones */
 button, .button-link {
-  display: inline-block;
+  display: inline-flex; /* Para alinear icono y texto */
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem; /* Espacio entre icono y texto */
   padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
+  border: 1px solid var(--color-border); /* Borde sutil */
+  border-radius: 6px; /* Estilo GitHub */
+  font-weight: 500; /* Peso GitHub */
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.1s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
   text-align: center;
   font-size: 1rem;
+  background-color: #21262d; /* Fondo botón GitHub */
+  color: var(--color-text);
+  line-height: 1.2; /* Asegura que el texto no se corte */
 }
 
 button:hover:not(:disabled), .button-link:hover {
-  opacity: 0.9;
-  transform: translateY(-1px); /* Ligero efecto al pasar el mouse */
+  background-color: #30363d; /* Hover GitHub */
+  border-color: #8b949e;
+  text-decoration: none; /* Quitar subrayado en hover de links-botones */
+  /* transform: translateY(-1px); */ /* Quitar para evitar saltos */
 }
 
 button:disabled {
   background-color: var(--color-button-disabled-bg);
   color: var(--color-button-disabled-text);
+  border-color: var(--color-button-disabled-bg);
   cursor: not-allowed;
   opacity: 0.7;
 }
 
-/* Estilos para la transición entre vistas */
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
+/* Transición entre vistas */
+.fade-enter-active, .fade-leave-active { transition: opacity 0.3s ease; }
+.fade-enter-from, .fade-leave-to { opacity: 0; }
 
 /* Media queries para padding del contenedor */
-@media (min-width: 640px) { /* sm */
-  :root {
-    --container-padding: 2rem;
-  }
-}
-
-@media (min-width: 1024px) { /* lg */
-  :root {
-    --container-padding: 4rem;
-  }
-}
-
-@media (min-width: 1280px) { /* xl */
-  :root {
-    --container-padding: 5rem;
-  }
-}
+@media (min-width: 640px) { :root { --container-padding: 2rem; } }
+@media (min-width: 1024px) { :root { --container-padding: 4rem; } }
+@media (min-width: 1280px) { :root { --container-padding: 5rem; } }
